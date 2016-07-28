@@ -12,7 +12,12 @@ import template from './todosList.html';
 
       this.helpers({
         tasks() {
-          return Tasks.find({});
+          // Show newest tasks at the top
+          return Tasks.find({}, {
+            sort: {
+              createdAt: -1
+            }
+          });
         }
       })
     }
@@ -26,8 +31,8 @@ import template from './todosList.html';
       // Clear form
       this.newTask = '';
     }
-    
-  }
+
+  } //end class
 
   export default angular.module('todosList', [
     angularMeteor
